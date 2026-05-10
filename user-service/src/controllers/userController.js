@@ -26,190 +26,191 @@ const activeUsersCounter = meter.createUpDownCounter('active_users', {
   unit: 'users',
 });
 
+const createUser = async (req, res, next) => {
+  const span = trace.getActiveSpan(); // Get the active span from middleware
+  try {
+    span.addEvent('User creation started');
 
-class UserController {
-  async createUser(req, res, next) {
-    const span = trace.getActiveSpan(); // Get the active span from middleware
-    try {
-      span.addEvent('User creation started');
+    // calculate user creation time
+    const startTime = Date.now();
+    const user = await userService.createUser(req.body);
+    const durationSeconds = (Date.now() - startTime) / 1000;
 
-      // calculate user creation time
-      const startTime = Date.now();
-      const user = await userService.createUser(req.body);
-      const durationSeconds = (Date.now() - startTime) / 1000;
-      
-      // set span attr and event
-      span.setAttribute('app.user.id', user.id);
-      span.addEvent('User creation completed', { 
-        'app.user.id': user.id 
-      });
+    // set span attr and event
+    span.setAttribute('app.user.id', user.id);
+    span.addEvent('User creation completed', {
+      'app.user.id': user.id,
+    });
 
-      // log
-      logger.info('User created', {
-        userId: user.id,
-      });
+    // log
+    logger.info('User created', {
+      userId: user.id,
+    });
 
-      // Record Metrics
-      dbQueryCounter.add(1, { 'db.operation': 'INSERT', 'db.status': 'success' });
-      dbQueryDuration.record(durationSeconds, { 'db.operation': 'INSERT' });
-      userCreatedCounter.add(1, { status: 'success' });
-      activeUsersCounter.add(1);
+    // Record Metrics
+    dbQueryCounter.add(1, { 'db.operation': 'INSERT', 'db.status': 'success' });
+    dbQueryDuration.record(durationSeconds, { 'db.operation': 'INSERT' });
+    userCreatedCounter.add(1, { status: 'success' });
+    activeUsersCounter.add(1);
 
-      // send the response
-      res.status(201).json(user);
-    } catch (error) {
+    // send the response
+    res.status(201).json(user);
+  } catch (error) {
+    // log
+    logger.error('Error creating user', {
+      error: error.message,
+      userId: req.body.id || 'unknown',
+    });
 
-      // log
-      logger.error('Error creating user', {
-        error: error.message,
-        userId: req.body.id || 'unknown',
-      });
+    //span
+    span.setStatus({
+      code: SpanStatusCode.ERROR,
+      message: error.message,
+    });
+    span.recordException(error);
 
-      //span
-      span.setStatus({
-        code: SpanStatusCode.ERROR,
-        message: error.message,
-      });
-      span.recordException(error);
-      
-      //metric
-      userCreatedCounter.add(1, { status: 'failure' });
-      next(error);
-    }
+    //metric
+    userCreatedCounter.add(1, { status: 'failure' });
+    next(error);
   }
+};
 
-  async getUser(req, res, next) {
-    const span = trace.getActiveSpan();
-    try {
-      span.setAttribute('app.user.id', req.params.id);
+const getUser = async (req, res, next) => {
+  const span = trace.getActiveSpan();
+  try {
+    span.setAttribute('app.user.id', req.params.id);
 
-      // calculate
-      const startTime = Date.now();
-      const user = await userService.getUser(req.params.id);
-      const durationSeconds = (Date.now() - startTime) / 1000;
+    // calculate
+    const startTime = Date.now();
+    const user = await userService.getUser(req.params.id);
+    const durationSeconds = (Date.now() - startTime) / 1000;
 
-      // log
-      logger.info('User retrieved', {
-        userId: req.params.id,
-      });
+    // log
+    logger.info('User retrieved', {
+      userId: req.params.id,
+    });
 
-      // metrics
-      dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'success' });
-      dbQueryDuration.record(durationSeconds, { 'db.operation': 'SELECT' });
+    // metrics
+    dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'success' });
+    dbQueryDuration.record(durationSeconds, { 'db.operation': 'SELECT' });
 
-      // send response
-      res.json(user);
-    } catch (error) {
-      logger.error('Error getting user', {
-        error: error.message,
-        userId: req.params.id,
-      });
-      span.setStatus({
-        code: SpanStatusCode.ERROR,
-        message: error.message,
-      });
-      span.recordException(error);
-      dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'failure' });
-      next(error);
-    }
+    // send response
+    res.json(user);
+  } catch (error) {
+    logger.error('Error getting user', {
+      error: error.message,
+      userId: req.params.id,
+    });
+    span.setStatus({
+      code: SpanStatusCode.ERROR,
+      message: error.message,
+    });
+    span.recordException(error);
+    dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'failure' });
+    next(error);
   }
+};
 
-  async updateUser(req, res, next) {
-    const span = trace.getActiveSpan();
-    try {
-      span.setAttribute('app.user.id', req.params.id);
+const updateUser = async (req, res, next) => {
+  const span = trace.getActiveSpan();
+  try {
+    span.setAttribute('app.user.id', req.params.id);
 
-      const startTime = Date.now()
-      const user = await userService.updateUser(req.params.id, req.body);
-      const durationSeconds = (Date.now() - startTime) / 1000;
+    const startTime = Date.now();
+    const user = await userService.updateUser(req.params.id, req.body);
+    const durationSeconds = (Date.now() - startTime) / 1000;
 
-      logger.info('User updated', {
-        userId: req.params.id,
-      });
+    logger.info('User updated', {
+      userId: req.params.id,
+    });
 
-      dbQueryCounter.add(1, { 'db.operation': 'UPDATE', 'db.status': 'success' });
-      dbQueryDuration.record(durationSeconds, { 'db.operation': 'UPDATE' });
+    dbQueryCounter.add(1, { 'db.operation': 'UPDATE', 'db.status': 'success' });
+    dbQueryDuration.record(durationSeconds, { 'db.operation': 'UPDATE' });
 
-      res.json(user);
-    } catch (error) {
-      logger.error('Error updating user', {
-        error: error.message,
-        userId: req.params.id,
-      });
-      span.setStatus({
-        code: SpanStatusCode.ERROR,
-        message: error.message,
-      });
-      span.recordException(error);
-      dbQueryCounter.add(1, { 'db.operation': 'UPDATE', 'db.status': 'failure' });
-      next(error);
-    }
+    res.json(user);
+  } catch (error) {
+    logger.error('Error updating user', {
+      error: error.message,
+      userId: req.params.id,
+    });
+    span.setStatus({
+      code: SpanStatusCode.ERROR,
+      message: error.message,
+    });
+    span.recordException(error);
+    dbQueryCounter.add(1, { 'db.operation': 'UPDATE', 'db.status': 'failure' });
+    next(error);
   }
+};
 
-  async deleteUser(req, res, next) {
-    const span = trace.getActiveSpan();
-    try {
-      span.setAttribute('app.user.id', req.params.id);
+const deleteUser = async (req, res, next) => {
+  const span = trace.getActiveSpan();
+  try {
+    span.setAttribute('app.user.id', req.params.id);
 
-      const startTime = Date.now();
-      await userService.deleteUser(req.params.id);
-      const durationSeconds = (Date.now() - startTime) / 1000;
+    const startTime = Date.now();
+    await userService.deleteUser(req.params.id);
+    const durationSeconds = (Date.now() - startTime) / 1000;
 
-      logger.info('User deleted', {
-        userId: req.params.id,
-      });
+    logger.info('User deleted', {
+      userId: req.params.id,
+    });
 
-      dbQueryCounter.add(1, { 'db.operation': 'DELETE', 'db.status': 'success' });
-      dbQueryDuration.record(durationSeconds, { 'db.operation': 'DELETE' });
-      activeUsersCounter.add(-1);
+    dbQueryCounter.add(1, { 'db.operation': 'DELETE', 'db.status': 'success' });
+    dbQueryDuration.record(durationSeconds, { 'db.operation': 'DELETE' });
+    activeUsersCounter.add(-1);
 
-      res.status(204).send();
-    } catch (error) {
-      logger.error('Error deleting user', {
-        error: error.message,
-        userId: req.params.id,
-      });
-      span.setStatus({
-        code: SpanStatusCode.ERROR,
-        message: error.message,
-      });
-      span.recordException(error);
-      dbQueryCounter.add(1, { 'db.operation': 'DELETE', 'db.status': 'failure' });
-      next(error);
-    }
+    res.status(204).send();
+  } catch (error) {
+    logger.error('Error deleting user', {
+      error: error.message,
+      userId: req.params.id,
+    });
+    span.setStatus({
+      code: SpanStatusCode.ERROR,
+      message: error.message,
+    });
+    span.recordException(error);
+    dbQueryCounter.add(1, { 'db.operation': 'DELETE', 'db.status': 'failure' });
+    next(error);
   }
+};
 
-  async getAllUsers(req, res, next) {
-    const span = trace.getActiveSpan();
-    try {
+const getAllUsers = async (req, res, next) => {
+  const span = trace.getActiveSpan();
+  try {
+    const startTime = Date.now();
+    const users = await userService.getAllUsers();
+    const durationSeconds = (Date.now() - startTime) / 1000;
 
-      const startTime = Date.now()
-      const users = await userService.getAllUsers();
-      const durationSeconds = (Date.now() - startTime) / 1000;
+    span.setAttribute('app.users.count', users.length);
 
-      span.setAttribute('app.users.count', users.length);
+    logger.info('Retrieved all users', {
+      userCount: users.length,
+    });
 
-      logger.info('Retrieved all users', {
-        userCount: users.length,
-      });
+    dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'success' });
+    dbQueryDuration.record(durationSeconds, { 'db.operation': 'SELECT' });
 
-      dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'success' });
-      dbQueryDuration.record(durationSeconds, { 'db.operation': 'SELECT' });
-
-      res.json(users);
-    } catch (error) {
-      logger.error('Error getting all users', {
-        error: error.message,
-      });
-      span.setStatus({
-        code: SpanStatusCode.ERROR,
-        message: error.message,
-      });
-      span.recordException(error);
-      dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'failure' });
-      next(error);
-    }
+    res.json(users);
+  } catch (error) {
+    logger.error('Error getting all users', {
+      error: error.message,
+    });
+    span.setStatus({
+      code: SpanStatusCode.ERROR,
+      message: error.message,
+    });
+    span.recordException(error);
+    dbQueryCounter.add(1, { 'db.operation': 'SELECT', 'db.status': 'failure' });
+    next(error);
   }
-}
+};
 
-module.exports = new UserController();
+module.exports = {
+  createUser,
+  getUser,
+  updateUser,
+  deleteUser,
+  getAllUsers,
+};
