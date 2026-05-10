@@ -1,0 +1,227 @@
+[
+  {
+    "traceId": "59402b9da15fc5746cda1f29bf3004e5",
+    "spanId": "7063599f1563a165",
+    "parentSpanId": "6836cf50d7916fd1",
+    "name": "request handler - /",
+    "kind": 0,
+    "startTime": [
+      1778410694,
+      108000000
+    ],
+    "endTime": [
+      1778410694,
+      111889042
+    ],
+    "durationNs": 3889042,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "router.name": "<anonymous>",
+      "router.version": "2.2.0",
+      "router.type": "request_handler",
+      "http.route": "/"
+    },
+    "events": [],
+    "resource": {
+      "host.name": "Fahims-MacBook-Air.local",
+      "host.arch": "arm64",
+      "host.id": "ECE9FB39-17B1-5668-8857-F57AB6279D3B",
+      "process.pid": 6147,
+      "process.executable.name": "node",
+      "process.executable.path": "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+      "process.command_args": [
+        "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+        "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js"
+      ],
+      "process.runtime.version": "24.6.0",
+      "process.runtime.name": "nodejs",
+      "process.runtime.description": "Node.js",
+      "process.command": "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js",
+      "process.owner": "fahimahammedfiroz",
+      "service.name": "unknown_service:node",
+      "telemetry.sdk.language": "nodejs",
+      "telemetry.sdk.name": "opentelemetry",
+      "telemetry.sdk.version": "2.7.1"
+    },
+    "instrumentationScope": {
+      "name": "@opentelemetry/instrumentation-router",
+      "version": "0.61.0"
+    },
+    "timestamp": "2026-05-10T10:58:14.113Z"
+  }
+]
+[
+  {
+    "traceId": "59402b9da15fc5746cda1f29bf3004e5",
+    "spanId": "9752c28957729cfe",
+    "parentSpanId": "d588c5d3420eb42b",
+    "name": "middleware - patched",
+    "kind": 0,
+    "startTime": [
+      1778410694,
+      107000000
+    ],
+    "endTime": [
+      1778410694,
+      111916542
+    ],
+    "durationNs": 4916542,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "router.name": "patched",
+      "router.version": "2.2.0",
+      "router.type": "middleware",
+      "http.route": "/"
+    },
+    "events": [],
+    "resource": {
+      "host.name": "Fahims-MacBook-Air.local",
+      "host.arch": "arm64",
+      "host.id": "ECE9FB39-17B1-5668-8857-F57AB6279D3B",
+      "process.pid": 6147,
+      "process.executable.name": "node",
+      "process.executable.path": "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+      "process.command_args": [
+        "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+        "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js"
+      ],
+      "process.runtime.version": "24.6.0",
+      "process.runtime.name": "nodejs",
+      "process.runtime.description": "Node.js",
+      "process.command": "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js",
+      "process.owner": "fahimahammedfiroz",
+      "service.name": "unknown_service:node",
+      "telemetry.sdk.language": "nodejs",
+      "telemetry.sdk.name": "opentelemetry",
+      "telemetry.sdk.version": "2.7.1"
+    },
+    "instrumentationScope": {
+      "name": "@opentelemetry/instrumentation-router",
+      "version": "0.61.0"
+    },
+    "timestamp": "2026-05-10T10:58:14.113Z"
+  }
+]
+[
+  {
+    "traceId": "59402b9da15fc5746cda1f29bf3004e5",
+    "spanId": "d588c5d3420eb42b",
+    "parentSpanId": null,
+    "name": "GET /",
+    "kind": 1,
+    "startTime": [
+      1778410694,
+      105000000
+    ],
+    "endTime": [
+      1778410694,
+      112128500
+    ],
+    "durationNs": 7128500,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "http.url": "http://localhost:3000/",
+      "http.host": "localhost:3000",
+      "net.host.name": "localhost",
+      "http.method": "GET",
+      "http.scheme": "http",
+      "http.target": "/",
+      "http.user_agent": "curl/8.7.1",
+      "http.flavor": "1.1",
+      "net.transport": "ip_tcp",
+      "net.host.ip": "::1",
+      "net.host.port": 3000,
+      "net.peer.ip": "::1",
+      "net.peer.port": 49764,
+      "http.status_code": 200,
+      "http.status_text": "OK",
+      "http.route": "/"
+    },
+    "events": [],
+    "resource": {
+      "host.name": "Fahims-MacBook-Air.local",
+      "host.arch": "arm64",
+      "host.id": "ECE9FB39-17B1-5668-8857-F57AB6279D3B",
+      "process.pid": 6147,
+      "process.executable.name": "node",
+      "process.executable.path": "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+      "process.command_args": [
+        "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+        "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js"
+      ],
+      "process.runtime.version": "24.6.0",
+      "process.runtime.name": "nodejs",
+      "process.runtime.description": "Node.js",
+      "process.command": "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js",
+      "process.owner": "fahimahammedfiroz",
+      "service.name": "unknown_service:node",
+      "telemetry.sdk.language": "nodejs",
+      "telemetry.sdk.name": "opentelemetry",
+      "telemetry.sdk.version": "2.7.1"
+    },
+    "instrumentationScope": {
+      "name": "@opentelemetry/instrumentation-http",
+      "version": "0.217.0"
+    },
+    "timestamp": "2026-05-10T10:58:14.113Z"
+  }
+]
+[
+  {
+    "traceId": "59402b9da15fc5746cda1f29bf3004e5",
+    "spanId": "6836cf50d7916fd1",
+    "parentSpanId": "9752c28957729cfe",
+    "name": "request handler - /",
+    "kind": 0,
+    "startTime": [
+      1778410694,
+      107000000
+    ],
+    "endTime": [
+      1778410694,
+      111976208
+    ],
+    "durationNs": 4976208,
+    "status": {
+      "code": 0
+    },
+    "attributes": {
+      "http.route": "/",
+      "express.name": "/",
+      "express.type": "request_handler"
+    },
+    "events": [],
+    "resource": {
+      "host.name": "Fahims-MacBook-Air.local",
+      "host.arch": "arm64",
+      "host.id": "ECE9FB39-17B1-5668-8857-F57AB6279D3B",
+      "process.pid": 6147,
+      "process.executable.name": "node",
+      "process.executable.path": "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+      "process.command_args": [
+        "/opt/homebrew/Cellar/node/24.6.0/bin/node",
+        "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js"
+      ],
+      "process.runtime.version": "24.6.0",
+      "process.runtime.name": "nodejs",
+      "process.runtime.description": "Node.js",
+      "process.command": "/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/fileotel.js",
+      "process.owner": "fahimahammedfiroz",
+      "service.name": "unknown_service:node",
+      "telemetry.sdk.language": "nodejs",
+      "telemetry.sdk.name": "opentelemetry",
+      "telemetry.sdk.version": "2.7.1"
+    },
+    "instrumentationScope": {
+      "name": "@opentelemetry/instrumentation-express",
+      "version": "0.65.0"
+    },
+    "timestamp": "2026-05-10T10:58:14.113Z"
+  }
+]

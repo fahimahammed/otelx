@@ -1,0 +1,214 @@
+{
+  resource: {
+    attributes: {
+      'host.name': 'Fahims-MacBook-Air.local',
+      'host.arch': 'arm64',
+      'host.id': 'ECE9FB39-17B1-5668-8857-F57AB6279D3B',
+      'process.pid': 5087,
+      'process.executable.name': 'node',
+      'process.executable.path': '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+      'process.command_args': [
+        '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+        '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js'
+      ],
+      'process.runtime.version': '24.6.0',
+      'process.runtime.name': 'nodejs',
+      'process.runtime.description': 'Node.js',
+      'process.command': '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js',
+      'process.owner': 'fahimahammedfiroz',
+      'service.name': 'unknown_service:node',
+      'telemetry.sdk.language': 'nodejs',
+      'telemetry.sdk.name': 'opentelemetry',
+      'telemetry.sdk.version': '2.7.1'
+    }
+  },
+  instrumentationScope: {
+    name: '@opentelemetry/instrumentation-router',
+    version: '0.61.0',
+    schemaUrl: undefined
+  },
+  traceId: '4ab7a88ad4025764f6b9c0d061342487',
+  parentSpanContext: {
+    traceId: '4ab7a88ad4025764f6b9c0d061342487',
+    spanId: '60e5a6035a11c4e4',
+    traceFlags: 1,
+    traceState: undefined
+  },
+  traceState: undefined,
+  name: 'request handler - /',
+  id: '527d5ed1c023bb90',
+  kind: 0,
+  timestamp: 1778410088358000,
+  duration: 3584.75,
+  attributes: {
+    'router.name': '<anonymous>',
+    'router.version': '2.2.0',
+    'router.type': 'request_handler',
+    'http.route': '/'
+  },
+  status: { code: 0 },
+  events: [],
+  links: []
+}
+{
+  resource: {
+    attributes: {
+      'host.name': 'Fahims-MacBook-Air.local',
+      'host.arch': 'arm64',
+      'host.id': 'ECE9FB39-17B1-5668-8857-F57AB6279D3B',
+      'process.pid': 5087,
+      'process.executable.name': 'node',
+      'process.executable.path': '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+      'process.command_args': [
+        '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+        '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js'
+      ],
+      'process.runtime.version': '24.6.0',
+      'process.runtime.name': 'nodejs',
+      'process.runtime.description': 'Node.js',
+      'process.command': '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js',
+      'process.owner': 'fahimahammedfiroz',
+      'service.name': 'unknown_service:node',
+      'telemetry.sdk.language': 'nodejs',
+      'telemetry.sdk.name': 'opentelemetry',
+      'telemetry.sdk.version': '2.7.1'
+    }
+  },
+  instrumentationScope: {
+    name: '@opentelemetry/instrumentation-router',
+    version: '0.61.0',
+    schemaUrl: undefined
+  },
+  traceId: '4ab7a88ad4025764f6b9c0d061342487',
+  parentSpanContext: {
+    traceId: '4ab7a88ad4025764f6b9c0d061342487',
+    spanId: '237ef96c2c8613f8',
+    traceFlags: 1,
+    traceState: undefined
+  },
+  traceState: undefined,
+  name: 'middleware - patched',
+  id: '2985db7c4890dc00',
+  kind: 0,
+  timestamp: 1778410088358000,
+  duration: 4608.417,
+  attributes: {
+    'router.name': 'patched',
+    'router.version': '2.2.0',
+    'router.type': 'middleware',
+    'http.route': '/'
+  },
+  status: { code: 0 },
+  events: [],
+  links: []
+}
+{
+  resource: {
+    attributes: {
+      'host.name': 'Fahims-MacBook-Air.local',
+      'host.arch': 'arm64',
+      'host.id': 'ECE9FB39-17B1-5668-8857-F57AB6279D3B',
+      'process.pid': 5087,
+      'process.executable.name': 'node',
+      'process.executable.path': '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+      'process.command_args': [
+        '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+        '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js'
+      ],
+      'process.runtime.version': '24.6.0',
+      'process.runtime.name': 'nodejs',
+      'process.runtime.description': 'Node.js',
+      'process.command': '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js',
+      'process.owner': 'fahimahammedfiroz',
+      'service.name': 'unknown_service:node',
+      'telemetry.sdk.language': 'nodejs',
+      'telemetry.sdk.name': 'opentelemetry',
+      'telemetry.sdk.version': '2.7.1'
+    }
+  },
+  instrumentationScope: {
+    name: '@opentelemetry/instrumentation-http',
+    version: '0.217.0',
+    schemaUrl: undefined
+  },
+  traceId: '4ab7a88ad4025764f6b9c0d061342487',
+  parentSpanContext: undefined,
+  traceState: undefined,
+  name: 'GET /',
+  id: '237ef96c2c8613f8',
+  kind: 1,
+  timestamp: 1778410088356000,
+  duration: 6814.959,
+  attributes: {
+    'http.url': 'http://localhost:3000/',
+    'http.host': 'localhost:3000',
+    'net.host.name': 'localhost',
+    'http.method': 'GET',
+    'http.scheme': 'http',
+    'http.target': '/',
+    'http.user_agent': 'curl/8.7.1',
+    'http.flavor': '1.1',
+    'net.transport': 'ip_tcp',
+    'net.host.ip': '::1',
+    'net.host.port': 3000,
+    'net.peer.ip': '::1',
+    'net.peer.port': 49649,
+    'http.status_code': 200,
+    'http.status_text': 'OK',
+    'http.route': '/'
+  },
+  status: { code: 0 },
+  events: [],
+  links: []
+}
+{
+  resource: {
+    attributes: {
+      'host.name': 'Fahims-MacBook-Air.local',
+      'host.arch': 'arm64',
+      'host.id': 'ECE9FB39-17B1-5668-8857-F57AB6279D3B',
+      'process.pid': 5087,
+      'process.executable.name': 'node',
+      'process.executable.path': '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+      'process.command_args': [
+        '/opt/homebrew/Cellar/node/24.6.0/bin/node',
+        '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js'
+      ],
+      'process.runtime.version': '24.6.0',
+      'process.runtime.name': 'nodejs',
+      'process.runtime.description': 'Node.js',
+      'process.command': '/Users/fahimahammedfiroz/learning/open-telemetry/Automatic-Instrumentation/app.js',
+      'process.owner': 'fahimahammedfiroz',
+      'service.name': 'unknown_service:node',
+      'telemetry.sdk.language': 'nodejs',
+      'telemetry.sdk.name': 'opentelemetry',
+      'telemetry.sdk.version': '2.7.1'
+    }
+  },
+  instrumentationScope: {
+    name: '@opentelemetry/instrumentation-express',
+    version: '0.65.0',
+    schemaUrl: undefined
+  },
+  traceId: '4ab7a88ad4025764f6b9c0d061342487',
+  parentSpanContext: {
+    traceId: '4ab7a88ad4025764f6b9c0d061342487',
+    spanId: '2985db7c4890dc00',
+    traceFlags: 1,
+    traceState: undefined
+  },
+  traceState: undefined,
+  name: 'request handler - /',
+  id: '60e5a6035a11c4e4',
+  kind: 0,
+  timestamp: 1778410088358000,
+  duration: 4701.667,
+  attributes: {
+    'http.route': '/',
+    'express.name': '/',
+    'express.type': 'request_handler'
+  },
+  status: { code: 0 },
+  events: [],
+  links: []
+}
