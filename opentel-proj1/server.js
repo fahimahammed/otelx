@@ -1,6 +1,8 @@
-const PORT = process.env.PORT || 3000;
+require('dotenv').config();
 const app = require('./app');
 const logger = require('./logger');
+
+const PORT = process.env.PORT || 3000;
 
 const startServer = () => {
     try{
@@ -9,6 +11,7 @@ const startServer = () => {
         });
     } catch (error) {
         logger.error('Error starting server:', error);
+        process.exit(1);
     }
 };
 
