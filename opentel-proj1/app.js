@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+app.use('/api/users', require('./routes/userRoutes'));
+
 // Example route that throws an error
 app.get('/error', catchAsync(async (req, res, next) => {
     throw new AppError('This is a test error', 400);
