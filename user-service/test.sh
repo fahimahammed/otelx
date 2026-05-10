@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_URL="http://localhost:5000/api/users"
+BASE_URL="http://localhost:3000/api/users"
 
 echo "==============================="
 echo "1. Creating 100 Users"
