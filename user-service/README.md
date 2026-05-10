@@ -123,11 +123,11 @@ This gives enough context to answer:
 
 ---
 
-## Dashboards & Trace View
+## System Design & Trace View
 
-### Service Dashboard / Observability View
+### System Design
 
-![Service Dashboard](docs/assets/sd1.png)
+![System Design](docs/assets/sd1.png)
 
 ### Grafana Tempo Trace Exploration
 
