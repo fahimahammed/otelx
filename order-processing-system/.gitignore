@@ -1,2 +1,6 @@
 node_modules/
 dist/
+order-api/node_modules/
+order-api/dist/
+order-processor/node_modules/
+order-processor/dist/
