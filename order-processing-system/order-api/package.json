@@ -1,0 +1,24 @@
+{
+  "name": "order-api",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.1",
+    "@opentelemetry/auto-instrumentations-node": "^0.76.0",
+    "@opentelemetry/exporter-trace-otlp-grpc": "^0.218.0",
+    "@opentelemetry/sdk-node": "^0.218.0",
+    "@opentelemetry/winston-transport": "^0.28.0",
+    "amqplib": "^2.0.1",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.2",
+    "winston": "^3.19.0"
+  }
+}
