@@ -1,0 +1,11 @@
+mode_modules/
+dist/
+build/
+*.log
+*.env
+.DS_Store
+.idea/
+.vscode/
+*.iml
+*.sublime-project
+.env
