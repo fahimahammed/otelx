@@ -1,5 +1,5 @@
 {
-  "name": "order-api",
+  "name": "order-processor",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -13,7 +13,6 @@
       "@opentelemetry/winston-transport": "^0.12.0",
       "amqplib": "^0.10.3",
       "dotenv": "^16.4.7",
-      "express": "^4.18.2",
       "mongoose": "^7.6.3",
       "winston": "^3.11.0"
   }
